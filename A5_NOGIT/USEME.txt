@@ -1,0 +1,26 @@
+- Open the Collage Program class, running the file
+- Read the welcome message presented at the start
+- If you want to open a pre-existing project, click
+the "Load Project" button and select the file that
+you would like to load. (will end in .collage).
+- If you want to create a new project, click the 
+new project button, entering a height and a width
+that are above zero. 
+- From there, the possibilities are endless!
+- You can add a layer after clicking the button on
+the left side of the screen and entering a name for 
+your layer. 
+- After selecting a layer you can add an image to 
+that layer by clicking the "Add Image to Layer" 
+button and selecting the image that you want to 
+add from the file chooser. You can then choose which
+layer you want to add it by typing the name and the x and y offset of
+the image on the project.
+- You can also apply filters by selecting the layer 
+you want and clicking the filter you want and clicking
+the "Apply" button. 
+- When finished, you can click the "Save Project" 
+button to save the project as a project if you want 
+to edit in the future. Additionally, you can click the 
+"Save Image" button which saves the image as it is 
+on the screen.

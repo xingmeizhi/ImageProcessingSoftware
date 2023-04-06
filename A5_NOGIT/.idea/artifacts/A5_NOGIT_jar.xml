@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="A5_NOGIT:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/A5_NOGIT_jar</output-path>
+    <root id="archive" name="A5_NOGIT.jar">
+      <element id="module-output" name="A5_NOGIT" />
+    </root>
+  </artifact>
+</component>
