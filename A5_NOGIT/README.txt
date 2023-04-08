@@ -59,3 +59,11 @@ We added a Pixel interface instead of just a class because we put the convert to
 How to use our GUI is very clear, users can simply click each buttons, they will need to create or load a project first.
 We made layers a button for users to select so whenever they want to apply a filter to a certain layer they won't have to type the name of the layer, the layer will automatically add to the GUI.
 We also added a method to convert our Imageimpl into a bufferedImage so it can be displayed on our GUI.
+
+Update on A6:
+The convertToBufferedImage static method in IImage interface that takes a IImage was deleted. Instead, we added a new method toBufferedImage, which takes no arguments and convert an imageimpl
+Into a bufferedImage.
+Also, read and write Image methods are added to the IImage interface. These methods use ImageIO to read and write image, readImage method will automatically initialize the
+bufferedImage as an ImageImpl class. Write Image method uses ImageIO to save the Image with given filename as a png file.
+Some methods in the CollageModelImpl class are also changed to adjust our change. For instance, addImageToLayer method, if users want to add a PPM image to the layers, 
+Our program will then use readPPM method, anything else, use the ImageIO method.

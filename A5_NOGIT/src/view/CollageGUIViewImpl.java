@@ -225,6 +225,7 @@ public class CollageGUIViewImpl extends JFrame implements CollageGUIView {
             return;
           }
 
+
           int xOffset = getIntPopUp("Enter x offset:");
           int yOffset = getIntPopUp("Enter y offset:");
 

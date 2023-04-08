@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -147,8 +148,6 @@ public class CollageModelImpl implements CollageModel {
           }
           writer.write("\n");
         }
-
-
       }
     }
   }
@@ -165,7 +164,7 @@ public class CollageModelImpl implements CollageModel {
    */
   @Override
   public void addImageToLayer(ILayer layer, String imageName, int x, int y)
-          throws FileNotFoundException {
+          throws IOException {
     if (layer == null || imageName == null) {
       throw new IllegalArgumentException("Layer or image cannot be null");
     }
@@ -175,7 +174,14 @@ public class CollageModelImpl implements CollageModel {
 
     ImageImpl image = new ImageImpl(1, 1, 255);
 
-    image.readPPM(imageName);
+
+    String format = imageName.substring(imageName.lastIndexOf('.') + 1);
+    if (format.equals("ppm")) {
+      image.readPPM(imageName);
+    } else {
+      image.readImage(imageName);
+    }
+
 
     layer.addImage(image, x, y);
     layer.setImage(image);
@@ -258,7 +264,7 @@ public class CollageModelImpl implements CollageModel {
       }
     }
     // Save the rendered image to the given file
-    renderedImage.writePPM(filename);
+    renderedImage.writeImage(filename);
   }
 
 
@@ -296,7 +302,7 @@ public class CollageModelImpl implements CollageModel {
     project.addLayer(layer3);
     collageModel.addImageToLayer(layer3, "tako.ppm", 100, 0);
     collageModel.setFilter("Layer3", "Difference");
-    collageModel.saveImage("res/Difference.ppm");
+    collageModel.saveImage("Difference");
 
 
     //    collageModel.saveImage("res/testing2.ppm");

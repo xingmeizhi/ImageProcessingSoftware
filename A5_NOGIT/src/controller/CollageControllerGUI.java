@@ -211,6 +211,8 @@ public class CollageControllerGUI implements Features, CollageController {
       view.displayLayer(combinedImage, project.getLayers());
     } catch (FileNotFoundException e) {
       view.renderError(e.getMessage());
+    } catch (IOException e) {
+      view.renderError(e.getMessage());
     }
   }
 

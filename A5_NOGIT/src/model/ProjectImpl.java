@@ -9,9 +9,9 @@ import java.util.List;
  * contain all the methods relate to project.
  */
 public class ProjectImpl implements IProject {
-  private int width;
-  private int height;
-  private List<ILayer> layers;
+  private final int width;
+  private final int height;
+  private final List<ILayer> layers;
 
 
 
@@ -177,7 +177,7 @@ public class ProjectImpl implements IProject {
     for (ILayer layer : layers) {
       if (layer.hasImage()) {
         IImage layerIimage = layer.getImage();
-        BufferedImage layerImage = IImage.convertToBufferedImage(layerIimage);
+        BufferedImage layerImage = layerIimage.toBufferedImage();
         int xOffset = layer.getX();
         int yOffset = layer.getY();
         g.drawImage(layerImage, xOffset, yOffset, null);
@@ -196,7 +196,7 @@ public class ProjectImpl implements IProject {
    *
    * @param image image to be initialized
    */
-  public void initializeImage(ImageImpl image) {
+  private void initializeImage(ImageImpl image) {
     for (int y = 0; y < image.getHeight(); y++) {
       for (int x = 0; x < image.getWidth(); x++) {
         image.setPixel(x, y, new PixelImpl(255, 255, 255, 255));

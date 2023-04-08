@@ -29,7 +29,7 @@ public class CollageModelImplTest {
   }
 
   @Test
-  public void testAddImageToLayer() throws FileNotFoundException {
+  public void testAddImageToLayer() throws IOException {
     IProject project = collageModel.createProject(1000, 1000);
     ILayer layer = new LayerImpl("Layer1", project.getWidth(), project.getHeight());
     project.addLayer(layer);

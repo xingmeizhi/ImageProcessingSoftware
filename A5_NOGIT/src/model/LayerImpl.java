@@ -7,7 +7,7 @@ import model.filter.IFilter;
  * has all the methods relate to layer.
  */
 public class LayerImpl implements ILayer {
-  private String name;
+  private final String name;
   private ImageImpl image;
   private IFilter filter;
   private int x;
@@ -126,10 +126,6 @@ public class LayerImpl implements ILayer {
             || y + image.getHeight() > this.image.getHeight()) {
       throw new IllegalArgumentException("Invalid x or y");
     }
-    if (image == null) {
-      throw new IllegalArgumentException("image cannot be null");
-    }
-
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
         Pixel pixel = image.getPixel(j, i);

@@ -43,7 +43,7 @@ public interface CollageModel {
    * @param y         the y-coordinate of the layer
    * @throws FileNotFoundException if the file is not found
    */
-  void addImageToLayer(ILayer layer, String imageName, int x, int y) throws FileNotFoundException;
+  void addImageToLayer(ILayer layer, String imageName, int x, int y) throws IOException;
 
   /**
    * Sets the filter to the given layer.

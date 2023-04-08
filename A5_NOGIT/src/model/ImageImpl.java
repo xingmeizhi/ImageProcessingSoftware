@@ -1,10 +1,15 @@
 package model;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 /**
  * This class represents an ImageImpl class that contains
@@ -204,6 +209,68 @@ public class ImageImpl implements IImage {
     }
   }
 
+  /**
+   * Convert a ImageImpl class to a buffered image.
+   *
+   */
+  @Override
+  public BufferedImage toBufferedImage(){
+    int width = this.getWidth();
+    int height = this.getHeight();
+
+    BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+        Pixel pixel = this.getPixel(x, y);
+        Color color = new Color(pixel.getR(), pixel.getG(), pixel.getB(), pixel.getA());
+        bufferedImage.setRGB(x, y, color.getRGB());
+      }
+    }
+    return bufferedImage;
+  }
+
+  /**
+   * Read an image file, and convert it to an ImageImpl class,
+   * and set its height, width, rgba value.
+   *
+   * @param filename the name of the file to be read
+   * @throws IOException if there's an error reading image
+   */
+  @Override
+  public void readImage(String filename) throws IOException {
+    BufferedImage bufferedImage;
+    try {
+      bufferedImage = ImageIO.read(new File(filename));
+    } catch (IOException e) {
+      throw new IOException("Error reading image.");
+    }
+    this.width = bufferedImage.getWidth();
+    this.height = bufferedImage.getHeight();
+    this.maxValue = 255;
+    this.pixel = new Pixel[width][height];
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+        Color color = new Color(bufferedImage.getRGB(x, y));
+        this.setPixel(x, y, new PixelImpl(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()));
+      }
+    }
+  }
+
+  /**
+   * Writes the Image object data to an image file.
+   *
+   * @param filename name of the file to be saved
+   * @throws IOException if there's an error writing file
+   */
+  @Override
+  public void writeImage(String filename) throws IOException {
+    // Convert the ImageImpl to a BufferedImage
+    BufferedImage bufferedImage = this.toBufferedImage();
+
+    // Write the BufferedImage to the output file
+    ImageIO.write(bufferedImage, "png", new File(filename + ".png"));
+  }
 
 
 
