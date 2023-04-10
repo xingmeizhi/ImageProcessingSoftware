@@ -1,7 +1,7 @@
 package controller;
 
-import java.awt.Graphics2D;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,6 +25,7 @@ public class CollageControllerGUI implements Features, CollageController {
   private IProject project;
 
   private CollageModel model;
+
   private CollageGUIView view;
 
   private boolean projectExists;
@@ -33,8 +34,9 @@ public class CollageControllerGUI implements Features, CollageController {
   /**
    * Constructor for the GUI Controller that sets the model and view and adds the commands to
    * the command map.
+   *
    * @param project the project
-   * @param view the GUI view
+   * @param view    the GUI view
    */
   public CollageControllerGUI(CollageModel project, CollageGUIView view) {
     this.model = project;
@@ -75,6 +77,7 @@ public class CollageControllerGUI implements Features, CollageController {
 
   /**
    * Run the command based on the command map.
+   *
    * @param command the command given by the user
    */
   @Override
@@ -179,7 +182,7 @@ public class CollageControllerGUI implements Features, CollageController {
       view.renderMessage("Image saved successfully");
     } catch (IOException exception) {
       view.renderError(exception.getMessage());
-    } catch (IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       view.renderError(e.getMessage());
     }
   }
@@ -335,5 +338,7 @@ public class CollageControllerGUI implements Features, CollageController {
     view.features(this);
     view.renderMessage("Welcome "); ///////////////////////// ADD EXPLANATION OF PROGRAM HERE
   }
+
+
 
 }

@@ -157,4 +157,6 @@ public class LayerImpl implements ILayer {
   public boolean hasImage() {
     return hasImage;
   }
+
+
 }

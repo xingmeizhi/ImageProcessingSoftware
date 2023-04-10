@@ -64,6 +64,6 @@ Update on A6:
 The convertToBufferedImage static method in IImage interface that takes a IImage was deleted. Instead, we added a new method toBufferedImage, which takes no arguments and convert an imageimpl
 Into a bufferedImage.
 Also, read and write Image methods are added to the IImage interface. These methods use ImageIO to read and write image, readImage method will automatically initialize the
-bufferedImage as an ImageImpl class. Write Image method uses ImageIO to save the Image with given filename as a png file.
+bufferedImage as an ImageImpl class. Write Image method uses ImageIO to save the Image with given filename, users can choose any formats they want by typing the name "example.format". As long as ImageIO support.
 Some methods in the CollageModelImpl class are also changed to adjust our change. For instance, addImageToLayer method, if users want to add a PPM image to the layers, 
-Our program will then use readPPM method, anything else, use the ImageIO method.
+Our program will then use readPPM method, anything else, use the ImageIO method. Same with the writing, if the format is PPM, use write PPM, else use write image.

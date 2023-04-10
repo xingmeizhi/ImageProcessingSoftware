@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -214,16 +214,17 @@ public class ImageImpl implements IImage {
    *
    */
   @Override
-  public BufferedImage toBufferedImage(){
+  public BufferedImage toBufferedImage() {
     int width = this.getWidth();
     int height = this.getHeight();
 
-    BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+    BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
         Pixel pixel = this.getPixel(x, y);
-        Color color = new Color(pixel.getR(), pixel.getG(), pixel.getB(), pixel.getA());
+        Color color = new Color(
+                pixel.getR(), pixel.getG(), pixel.getB(), pixel.getA());
         bufferedImage.setRGB(x, y, color.getRGB());
       }
     }
@@ -252,7 +253,8 @@ public class ImageImpl implements IImage {
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
         Color color = new Color(bufferedImage.getRGB(x, y));
-        this.setPixel(x, y, new PixelImpl(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()));
+        this.setPixel(x, y, new PixelImpl(
+                color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()));
       }
     }
   }

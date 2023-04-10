@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -70,27 +69,7 @@ public interface IImage {
    */
   void writePPM(String filename) throws IOException;
 
-//  /**
-//   * Convert a ImageImpl class to a buffered image.
-//   * @param imageImpl the imageImpl to be converted
-//   * @return image that is converted to bufferedimage.
-//   */
-//  static BufferedImage convertToBufferedImage(IImage imageImpl) {
-//    int width = imageImpl.getWidth();
-//    int height = imageImpl.getHeight();
-//
-//    BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-//
-//    for (int y = 0; y < height; y++) {
-//      for (int x = 0; x < width; x++) {
-//        Pixel pixel = imageImpl.getPixel(x, y);
-//        Color color = new Color(pixel.getR(), pixel.getG(), pixel.getB(), pixel.getA());
-//        bufferedImage.setRGB(x, y, color.getRGB());
-//      }
-//    }
-//
-//    return bufferedImage;
-//  }
+
 
   /**
    * Convert a ImageImpl to a buffered image.

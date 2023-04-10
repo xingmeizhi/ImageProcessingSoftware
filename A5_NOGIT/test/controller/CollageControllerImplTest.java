@@ -8,6 +8,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import model.CollageModel;
+import model.CollageModelImpl;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -16,7 +19,9 @@ import static org.junit.Assert.assertEquals;
 public class CollageControllerImplTest {
 
 
-  private CollageController controller = new CollageControllerImpl();
+  CollageModel model = new CollageModelImpl();
+
+  private CollageController controller = new CollageControllerImpl(model);
 
   // http://www.java2s.com/example/java-api/java/lang/system/setout-1-4.html
   // Example usage for java.lang System setOut
@@ -25,7 +30,9 @@ public class CollageControllerImplTest {
 
   @Before
   public void setup() {
-    controller = new CollageControllerImpl();
+    CollageModel model = new CollageModelImpl();
+
+    controller = new CollageControllerImpl(model);
     outContent = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outContent));
   }

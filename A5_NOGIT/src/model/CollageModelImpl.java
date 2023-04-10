@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -307,7 +306,7 @@ public class CollageModelImpl implements CollageModel {
     project.addLayer(layer3);
     collageModel.addImageToLayer(layer3, "tako.ppm", 100, 0);
     collageModel.setFilter("Layer3", "Difference");
-    collageModel.saveImage("Difference");
+    collageModel.saveImage("Difference.png");
 
 
     //    collageModel.saveImage("res/testing2.ppm");

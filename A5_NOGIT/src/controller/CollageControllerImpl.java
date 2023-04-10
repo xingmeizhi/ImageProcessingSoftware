@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,15 +21,17 @@ import model.LayerImpl;
 public class CollageControllerImpl implements CollageController {
 
   private IProject project;
+
   private final Map<String, Command> commandMap;
-  private CollageModel model = new CollageModelImpl();
+  private CollageModel model;
 
 
   /**
    * Constructs a CollageControllerImpl, initializes the commandMap
    * with possible commands and their enum values.
    */
-  public CollageControllerImpl() {
+  public CollageControllerImpl(CollageModel project) {
+    this.model = project;
     commandMap = new HashMap<>();
     commandMap.put("new-project", Command.newProject);
     commandMap.put("load-project", Command.loadProject);
@@ -118,7 +123,7 @@ public class CollageControllerImpl implements CollageController {
 
           case loadProject:
             String loadpath = args[0];
-            model.load(loadpath);
+            project = model.load(loadpath);
             System.out.println("Project loaded!");
             break;
 
@@ -152,13 +157,37 @@ public class CollageControllerImpl implements CollageController {
   }
 
   /**
+   * Execute the script based on the given path of script file, and shut down the program.
+   *
+   * @param pathOfScriptFile the path of the file that need to be executed.
+   */
+  public void executeScriptFile(String pathOfScriptFile) throws IOException {
+    StringBuilder builder = new StringBuilder();
+    try (Scanner sc = new Scanner(new FileInputStream(pathOfScriptFile))) {
+      while (sc.hasNextLine()) {
+        String s = sc.nextLine();
+        builder.append(s + System.lineSeparator());
+      }
+    } catch (FileNotFoundException e) {
+      throw new FileNotFoundException("File " + pathOfScriptFile + " not found!");
+    }
+    ByteArrayInputStream scriptInputStream
+            = new ByteArrayInputStream(builder.toString().getBytes());
+    System.setIn(scriptInputStream);
+    run();
+  }
+
+
+  /**
    * main method that use to test controller.
    *
    * @param args args
    * @throws IOException if there are error
    */
   public static void main(String[] args) throws IOException {
-    CollageController controller = new CollageControllerImpl();
+    CollageModel model = new CollageModelImpl();
+
+    CollageController controller = new CollageControllerImpl(model);
     controller.run();
   }
 }

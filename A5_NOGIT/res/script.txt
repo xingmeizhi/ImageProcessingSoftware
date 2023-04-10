@@ -1,0 +1,10 @@
+New-project 1000 1000
+Add-layer layer1
+Set-filter layer1 blue-component
+Add-image-to-layer layer1 tako.ppm 0 0
+Add-layer layer2
+Add-image-to-layer layer2 tibbers.jpg 0 0
+Set-filter layer2 red-component
+Save-project project.collage
+Load-project project.collage
+Save-image 1.png

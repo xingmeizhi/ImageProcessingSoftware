@@ -1,3 +1,5 @@
+There are three mode of this program:
+GUI mode(double click or use command java -jar Program.jar:
 - Open the Collage Program class, running the file
 - Read the welcome message presented at the start
 - If you want to open a pre-existing project, click
@@ -24,3 +26,20 @@ button to save the project as a project if you want
 to edit in the future. Additionally, you can click the 
 "Save Image" button which saves the image as it is 
 on the screen.
+
+Text mode(use java -jar Program.jar -text)
+This support same commands from A4:
+new-project 800 600 (create a project with 800 x 600 canvas)
+add-layer layer1 (add a layer called layer1)
+set-filter layer1 blue-component (set a blue-component filter on layer1)
+add-image-to-layer layer1 yourimage.ppm x(int) y(int) (add yourimage.ppm to layer1 with given x and y offset)
+add-layer layer2 (add a layer called layer2)
+set-filter layer2 darken-value (set a darken filter based on the value)
+add-image-to-layer yourimage2.ppm x y (add yourimage.ppm to layer2 with given x and y offset)
+save-image path(string) (save the image to the given path)
+save-project (save your project to the memory)
+Load-project (load your project from the memory)
+quit (quit the program)
+
+Execute mode(java -jar Program.jar -file path-of-script-file)
+This ask for a text script file and run the program based on the command given each lines in the file and shut it down after execute the command.

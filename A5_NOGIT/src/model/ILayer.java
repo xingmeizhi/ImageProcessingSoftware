@@ -88,4 +88,6 @@ public interface ILayer {
    */
   boolean hasImage();
 
+
+
 }

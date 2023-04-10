@@ -17,4 +17,6 @@ public interface CollageController {
    *                     OR there's an error writing file
    */
   void run() throws IOException;
+
+
 }
