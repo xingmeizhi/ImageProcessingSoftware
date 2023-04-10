@@ -243,8 +243,10 @@ public class ImageImpl implements IImage {
     BufferedImage bufferedImage;
     try {
       bufferedImage = ImageIO.read(new File(filename));
-    } catch (IOException e) {
-      throw new IOException("Error reading image.");
+    } catch (FileNotFoundException e) {
+      throw new FileNotFoundException("File" + filename + "not found");
+    } catch (IOException ex) {
+      throw new IOException("error when reading image");
     }
     this.width = bufferedImage.getWidth();
     this.height = bufferedImage.getHeight();
