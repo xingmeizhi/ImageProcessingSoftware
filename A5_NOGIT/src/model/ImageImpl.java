@@ -268,9 +268,18 @@ public class ImageImpl implements IImage {
     // Convert the ImageImpl to a BufferedImage
     BufferedImage bufferedImage = this.toBufferedImage();
 
+    // Extract the file extension from the filename
+    String fileExtension = filename.substring(filename.lastIndexOf('.') + 1);
+
+    // Validate the file extension
+    if (!ImageIO.getImageWritersByFormatName(fileExtension).hasNext()) {
+      throw new IllegalArgumentException("Invalid image format: " + fileExtension);
+    }
+
     // Write the BufferedImage to the output file
-    ImageIO.write(bufferedImage, "png", new File(filename + ".png"));
+    ImageIO.write(bufferedImage, fileExtension, new File(filename));
   }
+
 
 
 

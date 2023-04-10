@@ -176,8 +176,11 @@ public class CollageControllerGUI implements Features, CollageController {
   public void saveImage(String pathname) {
     try {
       model.saveImage(pathname);
+      view.renderMessage("Image saved successfully");
     } catch (IOException exception) {
       view.renderError(exception.getMessage());
+    } catch (IllegalArgumentException e){
+      view.renderError(e.getMessage());
     }
   }
 

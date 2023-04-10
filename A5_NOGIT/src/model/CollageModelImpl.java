@@ -263,8 +263,13 @@ public class CollageModelImpl implements CollageModel {
         }
       }
     }
-    // Save the rendered image to the given file
-    renderedImage.writeImage(filename);
+    String fileExtension = filename.substring(filename.lastIndexOf('.') + 1);
+
+    if (fileExtension.equalsIgnoreCase("ppm")) {
+      renderedImage.writePPM(filename);
+    } else {
+      renderedImage.writeImage(filename);
+    }
   }
 
 

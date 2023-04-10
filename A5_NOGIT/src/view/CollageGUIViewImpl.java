@@ -167,7 +167,6 @@ public class CollageGUIViewImpl extends JFrame implements CollageGUIView {
           File file = fileChooser.getSelectedFile();
           String pathname = file.getAbsolutePath();
           features.saveImage(pathname);
-          renderMessage("Image saved successfully");
         }
       } else {
         renderError("No active project. Please create or load a project first.");
