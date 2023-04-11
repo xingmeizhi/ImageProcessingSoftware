@@ -67,3 +67,16 @@ Also, read and write Image methods are added to the IImage interface. These meth
 bufferedImage as an ImageImpl class. Write Image method uses ImageIO to save the Image with given filename, users can choose any formats they want by typing the name "example.format". As long as ImageIO support.
 Some methods in the CollageModelImpl class are also changed to adjust our change. For instance, addImageToLayer method, if users want to add a PPM image to the layers, 
 Our program will then use readPPM method, anything else, use the ImageIO method. Same with the writing, if the format is PPM, use write PPM, else use write image.
+
+As it relates to decoupling, there was little that we had to do as our view only utilised two interfaces which were the Features interface the ILayer interface. The ILayer interface
+was used to update the layer buttons as new layers were added to the project and to access the method to get a layer by name for editing. The other interface that was used in the view was
+the features interface, which allowed the view to access the controller and call functions when buttons were pressed. The other file that was passed in was the enum of the various commands
+that are accepted by the program.
+
+The only changes that we made to the program was to add the support for command arguments, which was missing from our previous submission. This allows for the ability to run the program
+with a script if so desired. We did not add any extra functionality in this iteration, however if we were to do so it would simply be a matter of creating a new button in the view, add
+the feature to the features interface, the implement the feature in the GUI Controller. Our design is pretty good, we have a good interaction between our model, controller, and view. There
+is not any access from our view to the model, and it only interacts with interfaces. The one thing that we would want to maybe consider changing in the future is the use of the switch statement
+in our controller, as if we begin to add extensive functionality that switch statement would become increasingly long. To do this we could make an interface and have each of the commands
+extend said interface so that there is no need for a switch statement, just an execute command in the controller that executes the command.
+

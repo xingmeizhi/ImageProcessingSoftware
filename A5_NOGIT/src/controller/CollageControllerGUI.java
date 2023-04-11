@@ -336,7 +336,13 @@ public class CollageControllerGUI implements Features, CollageController {
   @Override
   public void run() throws IOException {
     view.features(this);
-    view.renderMessage("Welcome "); ///////////////////////// ADD EXPLANATION OF PROGRAM HERE
+    view.renderMessage("Welcome! \n Load a project or make a new project to start. \n"
+            + " Once project is open, add layers or images to the project and use the various "
+            + "filters on the right. \n As you add new layers, they will appear next to your image,"
+            + " click on them to make edits to that particular layer. \n Once finished, you can "
+            + "save the project as the image that is on your screen with the Save Image button. \n "
+            + "Additionally, you can save the project as it is for future edits. \n Make sure you "
+            + "remember to save your image before closing the program. Enjoy!");
   }
 
 
