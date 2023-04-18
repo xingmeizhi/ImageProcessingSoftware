@@ -58,14 +58,14 @@ public class CollageModelImpl implements CollageModel {
       //a new arraylist to store layers
       List<ILayer> layers = new ArrayList<>();
 
+      // Create an empty project with the specified width and height
+      IProject currentProject = new ProjectImpl(width, height, layers);
+
       //read layer information
       while (scanner.hasNextLine()) {
         String[] layerInfo = scanner.nextLine().split(" ");
         String layerName = layerInfo[0];
         String filterName = layerInfo[1];
-
-        //create filter
-        IFilter filter = Allfilter.createFilter(filterName);
 
         //get layers width, height, offset
         dimensions = scanner.nextLine().split(" ");
@@ -88,15 +88,22 @@ public class CollageModelImpl implements CollageModel {
 
         LayerImpl layer = new LayerImpl(layerName, layerWidth, layerHeight);
         layer.setImage(layerImage);
-        layer.setFilter(filter);
         layer.setX(offsetX);
         layer.setY(offsetY);
         layers.add(layer);
+
+
+        // Create filter, passing the current layer and project
+        IFilter filter = Allfilter.createFilter(filterName, layer, currentProject);
+
+        // Set the filter for the layer
+        layer.setFilter(filter);
       }
 
-      return project = new ProjectImpl(width, height, layers);
+      return project = currentProject;
     }
   }
+
 
   /**
    * Save the current project to given file path.

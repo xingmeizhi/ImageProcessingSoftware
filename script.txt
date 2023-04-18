@@ -1,11 +1,22 @@
 New-project 1000 1000
 Add-layer layer1
-Set-filter layer1 blue-component
 Add-image-to-layer layer1 tako.ppm 0 0
+Set-filter layer1 normal
+Set-filter layer1 blue-component
+Set-filter layer1 green-component
+Set-filter layer1 darken-value
+Set-filter layer1 darken-intensity
+Set-filter layer1 darken-luma
+Set-filter layer1 brighten-value
+Set-filter layer1 brighten-intensity
+Set-filter layer1 brighten-luma
+Set-filter layer1 red-component
 Add-layer layer2
-Add-image-to-layer layer2 tibbers.jpg 0 0
-Set-filter layer2 red-component
+Add-image-to-layer layer2 ayaka.jpeg 100 100
+Set-filter layer2 screen
+Set-filter layer2 multiply
+Set-filter layer2 difference
 Save-project project.collage
 Load-project project.collage
-Save-image 1.png
-quit
+Save-image text-script.png
+Quit

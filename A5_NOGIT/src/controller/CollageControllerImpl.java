@@ -12,7 +12,6 @@ import model.CollageModel;
 import model.CollageModelImpl;
 import model.ILayer;
 import model.IProject;
-import model.LayerImpl;
 
 /**
  * This class represents a CollageControllerImpl that handle the methods that

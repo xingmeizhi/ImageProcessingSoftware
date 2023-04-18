@@ -138,3 +138,14 @@ is not any access from our view to the model, and it only interacts with interfa
 in our controller, as if we begin to add extensive functionality that switch statement would become increasingly long. To do this we could make an interface and have each of the commands
 extend said interface so that there is no need for a switch statement, just an execute command in the controller that executes the command.
 
+Update on A7:
+CONTROLLER:
+The files that we need to send over for the controller to compile was the CollageModel, ILayer, 
+and IProject interfaces as well as the CollageGUIView. The CollageModel interface is necessary 
+because it holds all the functions related to actually having the program work. The ILayer interface
+is necessary because there are numerous functions like addImages to layers, adding Layers, or 
+filtering specific layers. The ILayer interface allows for retrieval of these layers or creating  
+new layers. The IProject interface is useful because it acts similar to the model, just with a 
+separate distinction for items related to layers and images. The view interface is necessary because 
+you need a view to have something for the user to interact with. 
+

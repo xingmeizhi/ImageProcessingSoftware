@@ -32,7 +32,7 @@ public class CollageModelImplTest {
   public void testAddImageToLayer() throws IOException {
     IProject project = collageModel.createProject(1000, 1000);
     ILayer layer = new LayerImpl("Layer1", project.getWidth(), project.getHeight());
-    project.addLayer(layer);
+    project.addLayer("Layer1");
     collageModel.addImageToLayer(layer, "tako.ppm", 0, 0);
     assertNotNull(layer.getImage());
   }
@@ -42,7 +42,7 @@ public class CollageModelImplTest {
   public void testSetFilter() {
     IProject project = collageModel.createProject(800, 600);
     ILayer layer = new LayerImpl("Layer1", project.getWidth(), project.getHeight());
-    project.addLayer(layer);
+    project.addLayer("Layer1");
     collageModel.setFilter("Layer1", "blue-component");
     assertNotNull(layer.getFilter());
   }
@@ -56,8 +56,8 @@ public class CollageModelImplTest {
     ILayer layer1 = new LayerImpl("Layer1", 1000, 1000);
     ILayer layer2 = new LayerImpl("Layer2", 1000, 1000);
 
-    project.addLayer(layer1);
-    project.addLayer(layer2);
+    project.addLayer("Layer1");
+    project.addLayer("Layer2");
     collageModel.addImageToLayer(layer1, "black.ppm", 400, 0);
     collageModel.setFilter("Layer2", "blue-component");
     collageModel.addImageToLayer(layer2, "tibbers.ppm", 400, 0);
@@ -83,8 +83,8 @@ public class CollageModelImplTest {
     ILayer layer1 = new LayerImpl("Layer1", 1000, 1000);
     ILayer layer2 = new LayerImpl("Layer2", 1000, 1000);
 
-    project.addLayer(layer1);
-    project.addLayer(layer2);
+    project.addLayer("Layer1");
+    project.addLayer("Layer2");
     collageModel.addImageToLayer(layer1, "1.png", 0, 0);
     collageModel.setFilter("Layer2", "blue-component");
     collageModel.addImageToLayer(layer2, "2.png", 0, 0);

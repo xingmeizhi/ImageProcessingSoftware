@@ -33,10 +33,9 @@ public class ProjectImplTest {
   @Test
   public void addLayer() {
     ILayer newLayer = new LayerImpl("newLayer", 4, 4);
-    project.addLayer(newLayer);
+    project.addLayer("newLayer");
 
     assertEquals(3, project.getLayers().size());
-    assertEquals(newLayer, project.getLayerByName("newLayer"));
   }
 
   @Test
