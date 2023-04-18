@@ -1,4 +1,4 @@
-There are three mode of this program:
+There are three modes of this program:
 GUI mode(double click or use command java -jar Program.jar:
 - Open the Collage Program class, running the file
 - Read the welcome message presented at the start

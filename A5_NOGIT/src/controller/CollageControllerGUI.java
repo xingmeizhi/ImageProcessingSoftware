@@ -12,7 +12,6 @@ import java.util.Map;
 import model.CollageModel;
 import model.ILayer;
 import model.IProject;
-import model.LayerImpl;
 import view.CollageGUIView;
 
 import static java.lang.System.exit;
@@ -24,9 +23,9 @@ public class CollageControllerGUI implements Features, CollageController {
 
   private IProject project;
 
-  private CollageModel model;
+  private final CollageModel model;
 
-  private CollageGUIView view;
+  private final CollageGUIView view;
 
   private boolean projectExists;
 
@@ -100,8 +99,7 @@ public class CollageControllerGUI implements Features, CollageController {
         switch (command) {
           case addLayer:
             String layerName_addLayer = view.getStringPopUp("Enter Layer Name:");
-            project.addLayer(new LayerImpl(layerName_addLayer,
-                    project.getWidth(), project.getHeight()));
+            project.addLayer(layerName_addLayer);
             reload();
             view.renderMessage("Layer added!");
             break;
@@ -260,9 +258,9 @@ public class CollageControllerGUI implements Features, CollageController {
   }
 
   /**
-   * Get the conbined image as a buffered image.
+   * Get the combined image as a buffered image.
    *
-   * @param layers the layers that contain image to be get
+   * @param layers the layers that contain image to be retrieved
    * @return combined bufferedimage
    */
   @Override
@@ -284,6 +282,9 @@ public class CollageControllerGUI implements Features, CollageController {
   }
 
 
+  /**
+   * Reloads the display with new edits when edits are made.
+   */
   @Override
   public void reload() {
     BufferedImage combinedImage;
@@ -316,25 +317,30 @@ public class CollageControllerGUI implements Features, CollageController {
    */
   @Override
   public void addLayer(String name) {
-    ILayer layer = new LayerImpl(name, project.getWidth(), project.getHeight());
     try {
-      project.addLayer(layer);
+      project.addLayer(name);
 
     } catch (IllegalArgumentException e) {
       view.renderError(e.getMessage());
     }
   }
 
+  /**
+   * Reverts the project back to the initial image.
+   */
   @Override
   public void revertProject() {
     ILayer newLayer = project.getBottomLayer();
-    project.addLayer(newLayer);
+    project.addLayer(newLayer.getName());
     view.reset();
   }
 
 
+  /**
+   * Adds the features to the view and opens a welcome message with instructions for the user.
+   */
   @Override
-  public void run() throws IOException {
+  public void run() {
     view.features(this);
     view.renderMessage("Welcome! \n Load a project or make a new project to start. \n"
             + " Once project is open, add layers or images to the project and use the various "
@@ -344,7 +350,4 @@ public class CollageControllerGUI implements Features, CollageController {
             + "Additionally, you can save the project as it is for future edits. \n Make sure you "
             + "remember to save your image before closing the program. Enjoy!");
   }
-
-
-
 }

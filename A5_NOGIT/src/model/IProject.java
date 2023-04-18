@@ -10,10 +10,10 @@ public interface IProject {
   /**
    * Add a layer to the current project.
    *
-   * @param layer a layer to be added
+   * @param name name of the layer
    * @throws IllegalArgumentException if the layer given is null
    */
-  void addLayer(ILayer layer) throws IllegalArgumentException;
+  void addLayer(String name) throws IllegalArgumentException;
 
   /**
    * Remove a layer to the current project.

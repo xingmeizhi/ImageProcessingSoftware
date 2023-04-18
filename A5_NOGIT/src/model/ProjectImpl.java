@@ -39,15 +39,16 @@ public class ProjectImpl implements IProject {
   /**
    * Add a layer to the current project.
    *
-   * @param layer a layer to be added
+   * @param name name of the layer
    * @throws IllegalArgumentException if the layer given is null
    */
   @Override
-  public void addLayer(ILayer layer) throws IllegalArgumentException {
-    if (layer == null) {
-      throw new IllegalArgumentException("Layer cannot be null");
+  public void addLayer(String name) throws IllegalArgumentException {
+    if (name == null) {
+      throw new IllegalArgumentException("Layer name cannot be null");
     }
-    layers.add(layer);
+    ILayer l = new LayerImpl(name, width, height);
+    layers.add(l);
   }
 
   /**

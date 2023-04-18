@@ -1,41 +1,67 @@
-A4:
-This program is a text-based image editor which users can edit images using different commands. Here are the commands:
-1. new-project canvas-height canvas-width: creates a new project with the given name and given dimensions. Every project has a white background layer by default.
+This program is a image editor which users can edit images using different buttons (In the case
+of the GUI) or command (In the case of the text-based program). When the user opens the program
+they should go to the "Collage Program" file in the source code. They should run that file and if
+they want to use the GUI they should put no arguments in the terminal. If they want to use the
+text based program, they should enter "-text" when running the program. And if they want to use
+a script (A selection of pre-written commands in a text format) they should enter the file path
+ending in "-file" that contains the commands.
+
+For the text based version here are the commands:
+1. new-project canvas-height canvas-width: creates a new project with the given name and given
+                                           dimensions. Every project has a white background layer
+                                           by default.
 2. load-project path-to-project-file: loads a project into the program
 3. save-project: save the project as one file as described above
-4. add-layer layer-name: adds a new layer with the given name to the top of the whole project. This layer always has a fully transparent white image and the Normal filter on by default. Any attempt at creating another layer with the same name reports an error to the user, but continues the program.
-5. add-image-to-layer layer-name image-name x-pos y-pos: places an image on the layer such that the top left corner of the image is at (x-pos, y-pos)
-6. set-filter layer-name filter-option: sets the filter of the given layer where filter-option is one of the following at the moment
+4. add-layer layer-name: adds a new layer with the given name to the top of the whole project.
+                         This layer always has a fully transparent white image and the Normal filter
+                         on by default. Any attempt at creating another layer with the same name
+                         reports an error to the user, but continues the program.
+5. add-image-to-layer layer-name image-name x-pos y-pos: places an image on the layer such that the
+                                                         top left corner of the image is at
+                                                         (x-pos, y-pos)
+6. set-filter layer-name filter-option: sets the filter of the given layer where filter-option is
+                                        one of the following at the moment
 7. save-image file-name: save the result of applying all filters on the image
 8. quit: quits the project and loses all unsaved work
 
+For the GUI Based version there are a number of buttons. The order of usage of these buttons should
+be as follows:
+- Load a project or make a new project to start.
+- Once project is open, add layers or images to the project and use the various filters on the
+  right.
+  - The filter options are as follows:
+  - Normal: A normal filter
+  - Blue-Component: Increases the blue in a picture
+  - Red-Component: Increases the red in a picture
+  - Green-Component: Increases the green in a picture
+  - Darken-VALUE: Darken the value of an image
+  - Darken-INTENSITY: Darken the intensity of an image
+  - Darken-LUMA: Darken the luma of an image
+  - Brighten-VALUE: Brighten the value of an image
+  - Brighten-INTENSITY: Brighten the intensity of an image
+  - Brighten-LUMA: Brighten the luma of an image
+  - Difference: Takes the two pixels RGB components and subtracts them component wise
+  - Screen: Use the lightness value of the composite image's pixels below and the current layer's
+            pixels
+  - Multiply: Multiply the values together to darken image
+- As you add new layers, they will appear next to your image, click on them to make edits to that
+  particular layer.
+- Once finished, you can save the project as the image that is on your screen with the
+  Save Image button.
+- Additionally, you can save the project as it is for future edits.
 
-The design is based on MVC, there’s nothing in the view yet because this is a text-baed editor.
+Requirements to run the code:
+- Java 11 or higher JRE
+- JUnit 4 for running the tests
 
-
-The model has five different interface:
-1. IFilter: this contains apply and getName method, to apply the filter to the given image and get the name of the filter.
-2. CollageModel: this class represents a CollageModel interface that contains all the methods relate to users'command such as saving and loading.
-3. IImage: this is an image interface that has all the methods relates to the image.
-4. IProject: this interface has all the methods relate to the project users create.
-5. ILayer: this interface has all the methods relate to the layers.
-6. IPixel: this interface has all the methods relate to the pixel.
-Each implementations are designed to handel the methods from the interface. There’s one thing special about the IFilter interface is that in order to handel with duplicate code, I created an abstraction class. And under filter package, there’re all the filters.
-There’s also a Pixel class to save the rgb value.
-
-
-The controller has two interface:
-1. CollageController that contains a run method to run the program.
-controller package also has an enum class to save all the commands.
-2. Features, the features that will be contain in our GUI.
-
-
-
+Note:
+- The USE ME file can be found in the root in by the name "USEME.txt"
 
 Citation:
 readPPM method in ImageImpl class is cited from the starer code.
 convertRGBtoHSL AND convertHSLtoRGB methoad are cited from the code given.
 How to use System setOut to test is cited from http://www.java2s.com/example/java-api/java/lang/system/setout-1-4.html
+
 
 
 A script of commands that your program will accept:
@@ -51,6 +77,38 @@ save-image path(string) (save the image to the given path)
 save-project (save your project to the memory)
 Load-project (load your project from the memory)
 quit (quit the program)
+
+
+
+
+
+Design:
+The model has five different interfaces:
+1. IFilter: this contains apply and getName method, to apply the filter to the given image and get
+            the name of the filter.
+2. CollageModel: this class represents a CollageModel interface that contains all the methods
+                 relate to users'command such as saving and loading.
+3. IImage: this is an image interface that has all the methods relates to the image.
+4. IProject: this interface has all the methods relate to the project users create.
+5. ILayer: this interface has all the methods relate to the layers.
+6. IPixel: this interface has all the methods relate to the pixel.
+Each implementation is designed to handle the methods from the interface. There’s one thing special
+about the IFilter interface is that in order to handle with duplicate code, we created an
+abstract class. And under filter package all the filters can be found. There’s also a Pixel class
+to save the rgb value.
+
+
+The controller has two interface:
+1. CollageController that contains a run method to run the program.
+controller package also has an enum class to save all the commands.
+2. Features, the features that will be contained in our GUI.
+
+
+The view has one interface:
+1. CollageGUIView is the GUI view for the program that has methods to display a project, render
+   errors and messages, and add features to all the buttons that are created in the implementation.
+
+
 
 Update on A5:
 The load and save method are complete, user can now load and save from a file path.

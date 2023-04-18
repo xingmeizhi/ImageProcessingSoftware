@@ -90,25 +90,42 @@ public class CollageGUIViewImpl extends JFrame implements CollageGUIView {
     setVisible(true);
   }
 
+  /**
+   * Renders a message.
+   * @param message the message to be rendered.
+   */
   @Override
   public void renderMessage(String message) {
     JOptionPane.showMessageDialog(this,
             message);
   }
 
+  /**
+   * Renders an error.
+   * @param message the error to be rendered.
+   */
   @Override
   public void renderError(String message) {
     JOptionPane.showMessageDialog(this, message,
             "ERROR", JOptionPane.ERROR_MESSAGE);
   }
 
+  /**
+   * Resets the filter buttons so that none have been clicked.
+   */
   @Override
   public void reset() {
     this.allFilterButtons.clearSelection();
   }
 
 
-  //TODO: ask to create project even if user load a project.
+
+  /**
+   * Assigns the features of the load, save image, save project, new project, add image, and
+   * add image to layer buttons.
+   *
+   * @param features the features
+   */
   @Override
   public void features(Features features) {
 
@@ -242,6 +259,11 @@ public class CollageGUIViewImpl extends JFrame implements CollageGUIView {
   }
 
 
+  /**
+   * Uses setIcon to actually show the user the image.
+   * @param project the image of the current project
+   * @param layers the list of layers in the project
+   */
   @Override
   public void displayLayer(BufferedImage project, List<ILayer> layers) {
     if (project != null) {
@@ -358,6 +380,12 @@ public class CollageGUIViewImpl extends JFrame implements CollageGUIView {
   }
 
 
+  /**
+   * The panel that displays the image.
+   * @param width the width of the panel
+   * @param height the height of the panel
+   * @return the JPanel that displays the image
+   */
   private JPanel makeProjectDisplay(int width, int height) {
     JPanel top = new JPanel();
     top.add(new JLabel("Project:")).setFont(new Font(Font.SANS_SERIF, Font.BOLD,
@@ -376,6 +404,10 @@ public class CollageGUIViewImpl extends JFrame implements CollageGUIView {
   }
 
 
+  /**
+   * Makes a new panel with all the options for editing a project.
+   * @return the editing JPanel
+   */
   private JPanel makeEditOptions() {
     JPanel editOptions = new JPanel();
     editOptions.setLayout(new BoxLayout(editOptions, BoxLayout.X_AXIS));
@@ -403,7 +435,7 @@ public class CollageGUIViewImpl extends JFrame implements CollageGUIView {
                                         "Darken-LUMA", "Brighten-VALUE", "Brighten-INTENSITY", "" +
                                         "Brighten-LUMA", "Difference",
                                         "Screen", "Multiply"};
-
+    // assign all the different filters to buttons
     filterButtons = new JRadioButton[filterNames.length];
     allFilterButtons = new ButtonGroup();
 

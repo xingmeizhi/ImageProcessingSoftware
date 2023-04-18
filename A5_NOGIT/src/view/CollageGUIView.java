@@ -62,19 +62,6 @@ public interface CollageGUIView  {
    */
   String getStringPopUp(String title);
 
-
-  //  /**
-  //   * Set the size of the canvas.
-  //   * @param width the width of canvas
-  //   * @param height the height of canvas
-  //   */
-  //  void setCanvasSize(int width, int height);
-  //
-  //  /**
-  //   * Update the size of canvas.
-  //   */
-  //  void updateCanvasSize();
-
   /**
    * Update the layer buttons.
    */

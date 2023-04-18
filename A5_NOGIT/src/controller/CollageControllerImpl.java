@@ -88,8 +88,7 @@ public class CollageControllerImpl implements CollageController {
       switch (command) {
         case addLayer:
           String layerName_addLayer = args[0];
-          project.addLayer(new LayerImpl(layerName_addLayer,
-                  project.getWidth(), project.getHeight()));
+          project.addLayer(layerName_addLayer);
           System.out.println("Layer added!");
           break;
 

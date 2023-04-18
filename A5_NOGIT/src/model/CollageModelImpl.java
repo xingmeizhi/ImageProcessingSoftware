@@ -296,14 +296,14 @@ public class CollageModelImpl implements CollageModel {
     CollageModel collageModel = new CollageModelImpl();
     collageModel.createProject(1000, 1000);
     ILayer layer1 = new LayerImpl("Layer1", project.getWidth(), project.getHeight());
-    project.addLayer(layer1);
+    project.addLayer(layer1.getName());
     collageModel.addImageToLayer(layer1, "black.ppm", 400, 0);
     ILayer layer2 = new LayerImpl("Layer2", project.getWidth(), project.getHeight());
-    project.addLayer(layer2);
+    project.addLayer(layer2.getName());
     collageModel.setFilter("Layer2", "blue-component");
     collageModel.addImageToLayer(layer2, "tibbers.ppm", 400, 0);
     ILayer layer3 = new LayerImpl("Layer3", project.getWidth(), project.getHeight());
-    project.addLayer(layer3);
+    project.addLayer(layer3.getName());
     collageModel.addImageToLayer(layer3, "tako.ppm", 100, 0);
     collageModel.setFilter("Layer3", "Difference");
     collageModel.saveImage("Difference.png");
